@@ -1,5 +1,0 @@
-{
-  "cockpit": "http://localhost:8000",
-  "integration-config": "http://integration-ui-service.integration-cockpit.svc.cluster.local:8080",
-  "sample": "http://faros-cockpit-client-sample-service.faros.svc.cluster.local:8080"
-}
