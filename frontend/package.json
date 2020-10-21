@@ -16,13 +16,16 @@
 		"dotenv": "^8.2.0",
 		"ejs": "^3.1.5",
 		"express": "^4.17.1",
-		"http": "^0.0.1-security"
+		"http": "^0.0.1-security",
+		"pino": "^6.7.0"
 	},
 	"devDependencies": {
 		"@types/dotenv": "^8.2.0",
+		"@types/ejs": "^3.0.5",
 		"@types/express": "^4.17.8",
 		"@types/fs-extra": "^9.0.2",
 		"@types/node": "^14.11.10",
+		"@types/pino": "^6.3.3",
 		"@types/shelljs": "^0.8.8",
 		"fs-extra": "^9.0.1",
 		"nodemon": "^2.0.6",
