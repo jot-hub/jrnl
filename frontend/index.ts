@@ -7,7 +7,7 @@ dotenv.config();
 
 // port is now available to the Node.js runtime
 // as if it were an environment variable
-const port = process.env.SERVER_PORT;
+const port = process.env.SERVER_PORT ? process.env.SERVER_PORT : 8080;
 
 const app = express();
 
@@ -24,5 +24,5 @@ app.get( "/", ( req, res ) => {
 // start the express server
 app.listen( port, () => {
     // tslint:disable-next-line:no-console
-    console.log( `server started at http://localhost:${ port }` );
+    console.log( `hey server started at http://localhost:${port}` );
 } );
