@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: jrnl
+  labels:
+    app: frontend
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: frontend
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            port: 8080
+            path: /health
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 7
+        resources:
+          limits:
+            cpu: "2"
+            memory: 2048Mi
+          requests:
+            cpu: 250m
+            memory: 1024Mi
