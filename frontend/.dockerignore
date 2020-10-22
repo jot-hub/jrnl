@@ -1,0 +1,6 @@
+kubernetes/
+dist/
+.env
+.gitignore
+.gitattributes
+*.md
