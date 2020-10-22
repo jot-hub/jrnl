@@ -1,0 +1,12 @@
+apiVersion: skaffold/v2beta8
+kind: Config
+metadata:
+  name: jrnl
+build:
+  artifacts:
+  - image: frontend
+    context: frontend
+deploy:
+  kubectl:
+    manifests:
+    - frontend/kubernetes/deployment.yaml
