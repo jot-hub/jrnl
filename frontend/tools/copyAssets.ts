@@ -4,4 +4,4 @@ import * as shell from "shelljs";
 shell.cp( "-R", "src/views", "dist/" );
 
 // Copy expo app
-shell.cp( "-R", "../app/web-build", "dist/app/" );
+// shell.cp( "-R", "../app/web-build", "dist/app/" );
