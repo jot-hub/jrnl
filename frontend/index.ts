@@ -4,6 +4,8 @@ import path from "path";
 import pino from "pino";
 import ejs from "ejs";
 import staticrouter = require("./src/static-router");
+import * as terminus from "@godaddy/terminus";
+import * as http from "http";
 
 // initialize configuration
 dotenv.config();
@@ -45,8 +47,15 @@ app.get( "/app", ( req, res ) => {
     res.render(path.join(__dirname, "app/index.html"));
 } );
 
+const server = http.createServer(app);
+terminus.createTerminus(server, {
+    healthChecks: {
+        '/health': ()=> Promise.resolve("OK")
+    }
+});
+
 // start the express server
-app.listen( port, () => {
+server.listen( port, () => {
     // tslint:disable-next-line:no-console
     console.log( `hey server started at http://localhost:${port}` );
 } );
