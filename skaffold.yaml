@@ -9,4 +9,5 @@ build:
 deploy:
   kubectl:
     manifests:
+    - base/namespace.yaml
     - frontend/kubernetes/deployment.yaml
