@@ -10,8 +10,6 @@ import * as http from "http";
 // initialize configuration
 dotenv.config();
 
-logger.info('In prep');
-
 // port is now available to the Node.js runtime
 // as if it were an environment variable
 const port = process.env.SERVER_PORT ? process.env.SERVER_PORT : 8080;

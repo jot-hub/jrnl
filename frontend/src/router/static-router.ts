@@ -24,14 +24,12 @@ router.get(staticExt.join('|'), (req, res, next) => {
   });
 
   return proxy.web(req, res, {
-    secure: false,
-    changeOrigin: true,
     target: process.env.STATIC_SERVER
   });
 });
 
 router.get( "/app", (req,res) => {
-  logger.info(`cling ${process.env.STATIC_SERVER}`);
+  logger.info(`proxying to ${process.env.STATIC_SERVER}`);
   return proxy.web(req, res, {target: `${process.env.STATIC_SERVER}/index.html`}) } );
 
 export = router;
