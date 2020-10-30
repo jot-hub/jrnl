@@ -1,5 +1,6 @@
+import logger from "../logger";
 import express from "express";
-import path from "path";
+import proxy from "../controller/static-proxy-controller";
 
 const router = express.Router();
 
@@ -22,12 +23,15 @@ router.get(staticExt.join('|'), (req, res, next) => {
     "Expires": new Date(Date.now() + 3600000).toUTCString()
   });
 
-  const staticPath = '../../dist/app/';
-  res.sendFile(req.url, { root: path.join(__dirname, staticPath) }, err => {
-    if (err) {
-      return next(err)
-    }
+  return proxy.web(req, res, {
+    secure: false,
+    changeOrigin: true,
+    target: process.env.STATIC_SERVER
   });
 });
+
+router.get( "/app", (req,res) => {
+  logger.info(`cling ${process.env.STATIC_SERVER}`);
+  return proxy.web(req, res, {target: `${process.env.STATIC_SERVER}/index.html`}) } );
 
 export = router;

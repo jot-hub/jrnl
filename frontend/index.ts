@@ -1,25 +1,16 @@
 import dotenv from "dotenv";
 import express from "express";
 import path from "path";
-import pino from "pino";
+import logger from "./src/logger";
 import ejs from "ejs";
-import staticrouter = require("./src/static-router");
+import staticrouter = require("./src/router/static-router");
 import * as terminus from "@godaddy/terminus";
 import * as http from "http";
 
 // initialize configuration
 dotenv.config();
 
-const logger = pino({
-    formatters: {
-      level: (label) => {
-        return { level: label };
-      },
-    },
-    serializers: {
-        err: pino.stdSerializers.err
-    }
-});
+logger.info('In prep');
 
 // port is now available to the Node.js runtime
 // as if it were an environment variable
@@ -39,12 +30,6 @@ app.use(staticrouter);
 app.get( "/", ( req, res ) => {
     // render the index template
     res.render( "index" );
-} );
-
-app.get( "/app", ( req, res ) => {
-    logger.info(__dirname);
-    // render the index template
-    res.render(path.join(__dirname, "app/index.html"));
 } );
 
 const server = http.createServer(app);
