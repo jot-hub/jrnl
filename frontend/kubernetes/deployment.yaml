@@ -37,3 +37,6 @@ spec:
           requests:
             cpu: 250m
             memory: 1024Mi
+        env:
+          - name: STATIC_SERVER
+            value: http://storage.googleapis.com/jrnl/web-build
